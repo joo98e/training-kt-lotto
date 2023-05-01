@@ -20,14 +20,18 @@ class LottoResult(
             throw ExpectedException("당첨 번호에 보너스 번호가 포함될 수 없습니다.")
         }
 
-        calculateResult()
+        initializeCalculateLotto()
     }
 
-    private fun calculateResult() {
+    private fun initializeCalculateLotto() {
         lottoTickets.forEach { ticket ->
             val lottoWinner = pair(this.lastWeekWinningNumbers, this.lastWeekWinningBonusNum, ticket.nums)
             this.result.add(lottoWinner)
         }
+    }
+
+    fun getResult(): MutableList<LottoWinner> {
+        return this.result
     }
 
     fun pair(winingNums: List<Int>, bonusNum: Int, ticketNums: List<Int>): LottoWinner {
