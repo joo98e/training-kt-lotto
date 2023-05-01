@@ -11,8 +11,8 @@ object InputView {
         return readln()
     }
 
-    fun getBonusWinningNumbers(): String {
-        println("지난 주 당첨 번호를 입력해 주세요.")
+    fun getBonusNumber(): String {
+        println("지난 주 보너스 번호를 입력해 주세요.")
         return readln()
     }
 }

@@ -1,31 +1,64 @@
 package domain.lotto
 
 import common.exception.ExpectedException
+import common.util.StringUtil
+import common.validation.Validation
 import constants.lotto.LottoConstant
 import enums.LottoWinner
 
 class LottoResult(
     private val lottoTickets: List<LottoTicket>,
-    private val lastWeekWinningNumbers: List<Int>,
-    private val lastWeekWinningBonusNum: Int
+    private val inputWinningNums: String,
+    private val inputBonusNum: String
 ) {
     private var result: MutableList<LottoWinner> = mutableListOf()
+    private var winningNums: List<Int> = listOf()
+    private var bonusNum: Int? = null
 
     init {
-        if (this.lastWeekWinningNumbers.size != LottoConstant.LOTTO_NUM_LENGTH) {
+        val stringList = StringUtil.split(this.inputWinningNums, ",")
+
+        if (stringList.any { Validation.isNonPositiveNumeric(it) }) {
+            throw ExpectedException("모든 숫자를 양수로 입력해 주세요.")
+        }
+
+        val tempWinningNums = stringList.map { it.toInt() }
+
+        if (Validation.hasDuplicateNumbers(tempWinningNums)) {
+            throw ExpectedException("중복된 숫자가 있습니다.")
+        }
+
+        if (tempWinningNums.any { it == 0 }) {
+            throw ExpectedException("당첨 번호는 1 이상 45 이하의 숫자여야 합니다.")
+        }
+
+        if (LottoValidation.isNotRangeForWinningNums(tempWinningNums)) {
+            throw ExpectedException("당첨 번호는 1 이상 45 이하의 숫자여야 합니다.")
+        }
+
+        if (Validation.isNotNumeric(this.inputBonusNum)) {
+            throw ExpectedException("보너스 번호는 숫자여야 합니다.")
+        }
+
+        this.winningNums = tempWinningNums
+        this.bonusNum = inputBonusNum.toInt()
+
+        if (this.winningNums.size != LottoConstant.LOTTO_NUM_LENGTH) {
             throw ExpectedException("당첨 번호의 size 는 6이어야 합니다.")
         }
 
-        if (this.lastWeekWinningBonusNum in this.lastWeekWinningNumbers) {
+        if (this.bonusNum in this.winningNums) {
             throw ExpectedException("당첨 번호에 보너스 번호가 포함될 수 없습니다.")
         }
+
+
 
         initializeCalculateLotto()
     }
 
     private fun initializeCalculateLotto() {
         lottoTickets.forEach { ticket ->
-            val lottoWinner = pair(this.lastWeekWinningNumbers, this.lastWeekWinningBonusNum, ticket.nums)
+            val lottoWinner = pair(this.winningNums, this.bonusNum!!, ticket.nums)
             this.result.add(lottoWinner)
         }
     }

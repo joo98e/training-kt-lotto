@@ -77,4 +77,10 @@
   - [ ] Gambler 의 소비 내역을 전달 받고 당첨 금액을 비교하여 수익률을 리턴한다.
   
 [^1] : readln 의 결과를 테스트하기에는 "입력을 받는다"라는 어려움이 있어, Validation 으로 검증  
-[^2] : readln 의 결과를 테스트하기에는 "입력을 받는다"라는 어려움이 있어, Validation 으로 검증  
+[^2] : readln 의 결과를 테스트하기에는 "입력을 받는다"라는 어려움이 있어, Validation 으로 검증
+
+
+- 양수의 Numeric
+- 입력 받은 값을 Split 후에 List<Int>로 하는 기능
+- lotte 번호에 알맞는 input인지 validate하는 기능
+- 같은 숫자가 입력될 수 있음

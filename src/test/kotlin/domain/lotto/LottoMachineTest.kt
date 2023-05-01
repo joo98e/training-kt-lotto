@@ -1,5 +1,6 @@
 package domain.lotto
 
+import constants.lotto.LottoConstant
 import io.kotest.matchers.ints.shouldBeBetween
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
@@ -9,7 +10,7 @@ class LottoMachineTest {
     fun `nums 변수에는 1부터 45까지의 숫자만 포함되어야 한다`() {
         val lottoTicket = LottoTicket()
         lottoTicket.nums.forEach {
-            it.shouldBeBetween(LottoMachine.originLottoNums.min(), LottoMachine.originLottoNums.max())
+            it.shouldBeBetween(LottoConstant.WINNING_NUM_RANGE.min(), LottoConstant.WINNING_NUM_RANGE.max())
         }
     }
 

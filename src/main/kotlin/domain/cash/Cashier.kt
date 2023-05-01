@@ -7,7 +7,7 @@ import domain.lotto.LottoTicket
 object Cashier {
     const val PRICE_LOTTO: Int = 1000
 
-    fun purchase(amount: Int): Gambler {
+    fun purchaseLotto(amount: Int): Gambler {
         val tickets = getLottoTickets(amount)
         return Gambler(amount, tickets)
     }
