@@ -50,15 +50,15 @@
   - 로또 티켓의 가격을 상수(companion Object)로 보유한다. 
 - Gambler(Cashier > Internal Class) 
   - ~~소비 금액을 보유한다.~~
-  - [ ] List<LottoTicket>를 보유한다.
+  - [x] List<LottoTicket>를 보유한다.
 - LottoTicket
   - [x] 오직 이곳에서만 로또 머신이 호출되며 init에서 호출한다.
-  - [ ] 티켓은 로또 머신을 호출한 결과를 보유한다. (List<Int>)
+  - [x] 티켓은 로또 머신을 호출한 결과를 보유한다. (List<Int>)
 - LottoMachine
-  - [ ] 번호 리스트를 가진다. (1 ~ 45)
-  - [ ] 자동 번호 리스트(List<Int>)를 산출한다.
-  - [ ] 보너스 번호(Int)를 산출한다.
-  - [ ] 서로 겹치지 않는 번호를 산출한다.
+  - [x] 번호 리스트를 가진다. (1 ~ 45)
+  - [x] 자동 번호 리스트(List<Int>)를 산출한다.
+  - [x] 보너스 번호(Int)를 산출한다.
+  - [x] 서로 겹치지 않는 번호를 산출한다.
 - LotteResult
   - [ ] 초기화 시 생성자에서 지난 주의 당첨 번호, 보너스 번호와 List<LottoTicket>을 받고 보유한다.
   - [ ] 지난 주의 당첨 번호와 보너스 번호를 받을 때, validate 를 한다.
