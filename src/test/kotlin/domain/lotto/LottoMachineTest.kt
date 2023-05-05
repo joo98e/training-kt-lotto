@@ -1,6 +1,7 @@
 package domain.lotto
 
-import constants.lotto.LottoConstant
+import domain.lotto.constants.LottoConstant
+import domain.lotto.ticket.LottoTicket
 import io.kotest.matchers.ints.shouldBeBetween
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test

@@ -1,4 +1,4 @@
-package enums
+package domain.lotto.enums
 
 enum class LottoWinner(val desc: String, val prizeMoney: Int) {
     FIRST_PLACE("6개 일치", 2_000_000_000),

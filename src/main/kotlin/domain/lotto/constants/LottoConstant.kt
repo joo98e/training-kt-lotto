@@ -1,4 +1,4 @@
-package constants.lotto
+package domain.lotto.constants
 
 object LottoConstant {
     const val LOTTO_NUM_LENGTH = 6

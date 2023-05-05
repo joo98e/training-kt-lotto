@@ -1,16 +1,18 @@
 package domain.gambler
 
-import domain.lotto.LottoTicket
+import domain.cash.Cash
+import domain.lotto.ticket.LottoTicketBundle
 
 class Gambler(
-    private val paidAmount: Int,
-    private val tickets: List<LottoTicket>
+    private val cash: Cash,
+    private val tickets: LottoTicketBundle
 ) {
-    fun getTickets(): List<LottoTicket> {
+
+    fun getTickets(): LottoTicketBundle {
         return this.tickets
     }
 
-    fun getPaidAmount(): Int {
-        return this.paidAmount
+    fun getCash(): Cash {
+        return this.cash
     }
 }

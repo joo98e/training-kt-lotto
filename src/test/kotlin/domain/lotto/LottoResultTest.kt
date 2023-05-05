@@ -1,7 +1,10 @@
 package domain.lotto
 
 import common.exception.ExpectedException
-import enums.LottoWinner
+import domain.lotto.result.LottoResult
+import domain.lotto.ticket.LottoTicket
+import domain.lotto.ticket.LottoTicketBundle
+import domain.lotto.enums.LottoWinner
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
@@ -9,11 +12,11 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class LottoResultTest {
-    private lateinit var lottoTickets: List<LottoTicket>
+    private lateinit var lottoTickets: LottoTicketBundle
 
     @BeforeEach
     fun setup() {
-        lottoTickets = List(10) { LottoTicket() }
+        lottoTickets = LottoTicketBundle(List(10) { LottoTicket() })
     }
 
     @Test
