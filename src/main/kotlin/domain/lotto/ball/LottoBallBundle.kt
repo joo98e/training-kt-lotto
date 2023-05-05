@@ -2,11 +2,11 @@ package domain.lotto.ball
 
 import common.exception.ExpectedException
 import common.validation.Validation
-import domain.lotto.constants.LottoConstant
 
 open class LottoBallBundle(private val lottoBalls: List<LottoBall>) {
+
     init {
-        if (lottoBalls.size != LottoConstant.LOTTO_NUM_LENGTH) {
+        if (lottoBalls.size != bundleLength) {
             throw ExpectedException("로또 티켓의 번호는 총 6개의 숫자만을 가져야 합니다.")
         }
 
@@ -18,5 +18,9 @@ open class LottoBallBundle(private val lottoBalls: List<LottoBall>) {
 
     fun getBallNums(): List<Int> {
         return this.lottoBalls.map { it.num }
+    }
+
+    companion object {
+        const val bundleLength = 6
     }
 }

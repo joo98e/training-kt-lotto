@@ -7,10 +7,13 @@ import domain.lotto.constants.LottoConstant
 import domain.lotto.ticket.LottoTicket
 
 object LottoMachine {
+    private fun generateLottoBalls(): List<LottoBall> {
+        return LottoConstant.WINNING_NUM_RANGE.shuffled().subList(0, LottoBallBundle.bundleLength)
+            .map { LottoBall(it.toString()) }
+    }
+
     fun execute(): LottoTicket {
-        val lottoBallBundle =
-            LottoBallBundle(LottoConstant.WINNING_NUM_RANGE.shuffled().subList(0, LottoConstant.LOTTO_NUM_LENGTH)
-                .map { LottoBall(it.toString()) })
+        val lottoBallBundle = LottoBallBundle(generateLottoBalls())
 
         val bonusBall =
             LottoBonusBall(LottoConstant.WINNING_NUM_RANGE.shuffled().first { it !in lottoBallBundle.getBallNums() }

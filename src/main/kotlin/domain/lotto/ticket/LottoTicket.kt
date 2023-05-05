@@ -7,5 +7,4 @@ import domain.lotto.ball.LottoBonusBall
 class LottoTicket(
     val lottoBallBundle: LottoBallBundle,
     val bonusBall: LottoBonusBall
-) {
-}
+) {}

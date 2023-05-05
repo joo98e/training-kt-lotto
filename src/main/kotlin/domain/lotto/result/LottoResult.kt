@@ -1,5 +1,6 @@
 package domain.lotto.result
 
+import common.exception.ExpectedException
 import domain.lotto.ticket.LottoTicketBundle
 import domain.lotto.enums.LottoWinner
 import domain.lotto.ticket.LottoTicket
@@ -12,6 +13,10 @@ class LottoResult(
     private var result: MutableList<LottoWinner> = mutableListOf()
 
     init {
+        if (resultBonusBall.num in resultBallBundle.getBallNums()) {
+            throw ExpectedException("당첨 번호에 보너스 번호가 포함될 수 없습니다.")
+        }
+
         initializeCalculateLotto()
     }
 
@@ -38,7 +43,7 @@ class LottoResult(
     ): LottoWinner {
         val ticketBallNums =
             lottoTicket.lottoBallBundle.getBallNums().count { it in lottoResultBallBundle.getBallNums() }
-        val countBonus = if (lottoResultBonusBall.num in lottoTicket.lottoBallBundle.getBallNums()) 1 else 0
+        val countBonus = if (lottoResultBonusBall.num == lottoTicket.bonusBall.num) 1 else 0
 
         return when {
             ticketBallNums == 6 -> LottoWinner.FIRST_PLACE
