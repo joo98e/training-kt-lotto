@@ -25,5 +25,5 @@ fun main() {
     val lottoResult = LottoResult(gambler.getTickets(), resultLottoBalls, bonusWinningNumber)
 
     OutputView.printLottoResult(lottoResult)
-    OutputView.printRevenueRate(gambler, lottoResult.getResult())
+    OutputView.printRevenueRate(gambler, lottoResult.getWonLotteries())
 }

@@ -2,7 +2,7 @@ package domain.cash
 
 import common.exception.ExpectedException
 import domain.gambler.Gambler
-import domain.lotto.machine.LottoMachine
+import domain.lotto.machine.LottoAutoTicketingMachine
 import domain.lotto.ticket.LottoTicketBundle
 
 object Cashier {
@@ -17,7 +17,7 @@ object Cashier {
         if (cash.amount % PRICE_LOTTO > 0) throw ExpectedException("금액은 천원 단위로 사용 가능합니다.")
 
         val ticketsCount = cash.amount / PRICE_LOTTO
-        return LottoTicketBundle(List(ticketsCount) { LottoMachine.execute() })
+        return LottoTicketBundle(List(ticketsCount) { LottoAutoTicketingMachine.execute() })
     }
 }
 

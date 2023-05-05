@@ -1,6 +1,6 @@
 package domain.lotto.enums
 
-enum class LottoWinner(val desc: String, val prizeMoney: Int) {
+enum class LottoWonLotteryEnum(val desc: String, val prizeMoney: Int) {
     FIRST_PLACE("6개 일치", 2_000_000_000),
     SECOND_PLACE("5개 일치, 보너스 번호 일치", 30_000_000),
     THIRD_PLACE("5개 일치", 1_500_000),
