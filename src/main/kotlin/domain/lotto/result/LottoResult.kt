@@ -13,7 +13,7 @@ class LottoResult(
     private var wonLotteries: MutableList<LottoWonLotteryEnum> = mutableListOf()
 
     init {
-        if (resultBonusBall.num in resultBallBundle.getBallNums()) {
+        if (resultBonusBall.lottoBall.num in resultBallBundle.lottoBallBundle.getBallNums()) {
             throw ExpectedException("당첨 번호에 보너스 번호가 포함될 수 없습니다.")
         }
 

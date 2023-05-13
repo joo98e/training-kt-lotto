@@ -4,7 +4,7 @@ import common.exception.ExpectedException
 import common.validation.Validation
 import domain.lotto.validation.LottoValidation
 
-open class LottoBall(ballNum: String) {
+class LottoBall(ballNum: String) {
     val num: Int
 
     init {

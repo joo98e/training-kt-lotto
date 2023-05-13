@@ -24,7 +24,7 @@ class LottoLotteryResultMachineTest {
                     LottoBall("5"),
                     LottoBall("6"),
                 )
-            ), LottoResultBonusBall("8"), LottoTicket(
+            ), LottoResultBonusBall(LottoBall("8")), LottoTicket(
                 LottoBallBundle(
                     listOf(
                         LottoBall("1"),
@@ -34,7 +34,7 @@ class LottoLotteryResultMachineTest {
                         LottoBall("5"),
                         LottoBall("6"),
                     )
-                ), LottoBonusBall("7")
+                ), LottoBonusBall(LottoBall("7"))
             )
         )
         lottoWonLotteryEnum shouldBe LottoWonLotteryEnum.FIRST_PLACE
@@ -52,7 +52,7 @@ class LottoLotteryResultMachineTest {
                     LottoBall("5"),
                     LottoBall("6"),
                 )
-            ), LottoResultBonusBall("7"), LottoTicket(
+            ), LottoResultBonusBall(LottoBall("7")), LottoTicket(
                 LottoBallBundle(
                     listOf(
                         LottoBall("1"),
@@ -62,7 +62,7 @@ class LottoLotteryResultMachineTest {
                         LottoBall("5"),
                         LottoBall("45"),
                     )
-                ), LottoBonusBall("7")
+                ), LottoBonusBall(LottoBall("7"))
             )
         )
 
@@ -81,7 +81,7 @@ class LottoLotteryResultMachineTest {
                     LottoBall("5"),
                     LottoBall("6"),
                 )
-            ), LottoResultBonusBall("7"), LottoTicket(
+            ), LottoResultBonusBall(LottoBall("7")), LottoTicket(
                 LottoBallBundle(
                     listOf(
                         LottoBall("1"),
@@ -91,7 +91,7 @@ class LottoLotteryResultMachineTest {
                         LottoBall("5"),
                         LottoBall("45"),
                     )
-                ), LottoBonusBall("44")
+                ), LottoBonusBall(LottoBall("44"))
             )
         )
 
@@ -110,7 +110,7 @@ class LottoLotteryResultMachineTest {
                     LottoBall("5"),
                     LottoBall("6"),
                 )
-            ), LottoResultBonusBall("7"), LottoTicket(
+            ), LottoResultBonusBall(LottoBall("7")), LottoTicket(
                 LottoBallBundle(
                     listOf(
                         LottoBall("1"),
@@ -120,7 +120,7 @@ class LottoLotteryResultMachineTest {
                         LottoBall("43"),
                         LottoBall("44"),
                     )
-                ), LottoBonusBall("45")
+                ), LottoBonusBall(LottoBall("45"))
             )
         )
         lottoWonLotteryEnum shouldBe LottoWonLotteryEnum.FOURTH_PLACE
@@ -138,7 +138,7 @@ class LottoLotteryResultMachineTest {
                     LottoBall("5"),
                     LottoBall("6"),
                 )
-            ), LottoResultBonusBall("7"), LottoTicket(
+            ), LottoResultBonusBall(LottoBall("7")), LottoTicket(
                 LottoBallBundle(
                     listOf(
                         LottoBall("1"),
@@ -148,7 +148,7 @@ class LottoLotteryResultMachineTest {
                         LottoBall("43"),
                         LottoBall("44"),
                     )
-                ), LottoBonusBall("45")
+                ), LottoBonusBall(LottoBall("45"))
             )
         )
         lottoWonLotteryEnum shouldBe LottoWonLotteryEnum.FIFTH_PLACE

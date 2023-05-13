@@ -15,8 +15,10 @@ object LottoAutoTicketingMachine {
     fun execute(): LottoTicket {
         val lottoBallBundle = LottoBallBundle(generateLottoBalls())
         val bonusBall =
-            LottoBonusBall(LottoConstant.LOTTO_NUM_RANGE.shuffled().first { it !in lottoBallBundle.getBallNums() }
-                .toString())
+            LottoBonusBall(
+                LottoBall(
+                    LottoConstant.LOTTO_NUM_RANGE.shuffled().first { it !in lottoBallBundle.getBallNums() }
+                        .toString()))
 
         return LottoTicket(lottoBallBundle, bonusBall)
     }

@@ -2,6 +2,7 @@ import common.util.StringUtil
 import domain.cash.Cash
 import domain.cash.Cashier
 import domain.lotto.ball.LottoBall
+import domain.lotto.ball.LottoBallBundle
 import domain.lotto.result.LottoResult
 import domain.lotto.result.LottoResultBallBundle
 import domain.lotto.result.LottoResultBonusBall
@@ -18,9 +19,9 @@ fun main() {
 
     val ballNums = StringUtil.split(InputView.getResultLottoBallNums(), ",")
     val resultLottoBalls = LottoResultBallBundle(
-        ballNums.map { LottoBall(it) }
+        LottoBallBundle(ballNums.map { LottoBall(it) })
     )
-    val bonusWinningNumber = LottoResultBonusBall(InputView.getBonusNumber())
+    val bonusWinningNumber = LottoResultBonusBall(LottoBall(InputView.getBonusNumber()))
 
     val lottoResult = LottoResult(gambler.getTickets(), resultLottoBalls, bonusWinningNumber)
 

@@ -12,8 +12,8 @@ object LottoLotteryResultMachine {
         lottoTicket: LottoTicket
     ): LottoWonLotteryEnum {
         val ticketBallNums =
-            lottoTicket.lottoBallBundle.getBallNums().count { it in lottoResultBallBundle.getBallNums() }
-        val countBonus = if (lottoResultBonusBall.num == lottoTicket.bonusBall.num) 1 else 0
+            lottoTicket.lottoBallBundle.getBallNums().count { it in lottoResultBallBundle.lottoBallBundle.getBallNums() }
+        val countBonus = if (lottoResultBonusBall.lottoBall.num == lottoTicket.bonusBall.ball.num) 1 else 0
 
         return when {
             ticketBallNums == 6 -> LottoWonLotteryEnum.FIRST_PLACE

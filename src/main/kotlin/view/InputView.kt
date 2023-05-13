@@ -1,9 +1,15 @@
 package view
 
+import common.exception.ExpectedException
+import common.validation.Validation
+
 object InputView {
-    fun getPurchaseLottoAmount(): String {
+    fun getPurchaseLottoAmount(): Int {
         println("구입 금액을 입력해 주세요.")
-        return readln()
+        val amount = readln()
+
+        if (Validation.isNotNumeric(amount)) throw ExpectedException("구입 금액은 숫자여야 합니다.")
+        return amount.toInt()
     }
 
     fun getResultLottoBallNums(): String {

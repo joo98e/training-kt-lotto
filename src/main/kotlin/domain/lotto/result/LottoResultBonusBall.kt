@@ -1,6 +1,6 @@
 package domain.lotto.result
 
-import domain.lotto.ball.LottoBonusBall
+import domain.lotto.ball.LottoBall
 
-class LottoResultBonusBall(ballNum: String) : LottoBonusBall(ballNum) {
+class LottoResultBonusBall(val lottoBall: LottoBall) {
 }
