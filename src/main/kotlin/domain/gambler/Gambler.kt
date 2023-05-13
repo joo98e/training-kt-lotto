@@ -4,7 +4,7 @@ import domain.cash.Cash
 import domain.lotto.ticket.LottoTicketBundle
 
 class Gambler(
-    private val cash: Cash,
+    val cash: Cash,
     private val tickets: LottoTicketBundle
 ) {
 
@@ -12,7 +12,4 @@ class Gambler(
         return this.tickets
     }
 
-    fun getCash(): Cash {
-        return this.cash
-    }
 }

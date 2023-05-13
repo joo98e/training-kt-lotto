@@ -11,12 +11,12 @@ class LottoBallBundleTest {
     @Test
     fun `BallBundle 에 중복된 숫자가 있는지 확인`() {
         val balls: List<LottoBall> = listOf(
-            LottoBall("1"),
-            LottoBall("2"),
-            LottoBall("3"),
-            LottoBall("4"),
-            LottoBall("5"),
-            LottoBall("6"),
+            LottoBall(1),
+            LottoBall(2),
+            LottoBall(3),
+            LottoBall(4),
+            LottoBall(5),
+            LottoBall(6),
         )
 
         val isNotDuplicateNum = Validation.hasDuplicateNumbers(balls.map { ball -> ball.num })
@@ -29,13 +29,13 @@ class LottoBallBundleTest {
         shouldThrow<ExpectedException> {
             LottoBallBundle(
                 listOf(
-                    LottoBall("1"),
-                    LottoBall("2"),
-                    LottoBall("3"),
-                    LottoBall("4"),
-                    LottoBall("5"),
-                    LottoBall("6"),
-                    LottoBall("7"),
+                    LottoBall(1),
+                    LottoBall(2),
+                    LottoBall(3),
+                    LottoBall(4),
+                    LottoBall(5),
+                    LottoBall(6),
+                    LottoBall(7),
                 )
             )
         }.message shouldBe "[ERROR]: 로또 티켓의 번호는 총 6개의 숫자만을 가져야 합니다."

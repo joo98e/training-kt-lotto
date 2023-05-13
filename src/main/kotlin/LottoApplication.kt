@@ -19,9 +19,9 @@ fun main() {
 
     val ballNums = StringUtil.split(InputView.getResultLottoBallNums(), ",")
     val resultLottoBalls = LottoResultBallBundle(
-        LottoBallBundle(ballNums.map { LottoBall(it) })
+        LottoBallBundle(ballNums.map { LottoBall(it.toInt()) })
     )
-    val bonusWinningNumber = LottoResultBonusBall(LottoBall(InputView.getBonusNumber()))
+    val bonusWinningNumber = LottoResultBonusBall(LottoBall(InputView.getBonusNumber().toInt()))
 
     val lottoResult = LottoResult(gambler.getTickets(), resultLottoBalls, bonusWinningNumber)
 

@@ -1,4 +1,3 @@
 package domain.lotto.ball
 
-class LottoBonusBall(val ball: LottoBall) {
-}
+class LottoBonusBall(val ball: LottoBall)

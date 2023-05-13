@@ -3,6 +3,7 @@ package view
 import domain.gambler.Gambler
 import domain.lotto.result.LottoResult
 import domain.lotto.enums.LottoWonLotteryEnum
+import java.text.DecimalFormat
 
 object OutputView {
     fun printPurchaseHistory(gambler: Gambler) {
@@ -27,9 +28,10 @@ object OutputView {
     }
 
     fun printRevenueRate(gambler: Gambler, winners: List<LottoWonLotteryEnum>) {
-        var result = 0
+        var result = 0.0
         winners.forEach { result += it.prizeMoney }
-        val earningRate = (result / gambler.getCash().amount) * 100
-        return println("총 수익률은 $earningRate % 입니다.")
+        val earningRate = result / gambler.cash.amount
+        val decimalFormat = DecimalFormat("#.##")
+        return println("총 수익률은 ${decimalFormat.format(earningRate)} 입니다.")
     }
 }

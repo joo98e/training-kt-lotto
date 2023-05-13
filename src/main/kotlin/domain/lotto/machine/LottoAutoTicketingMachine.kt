@@ -9,7 +9,7 @@ import domain.lotto.ticket.LottoTicket
 object LottoAutoTicketingMachine {
     private fun generateLottoBalls(): List<LottoBall> {
         return LottoConstant.LOTTO_NUM_RANGE.shuffled().subList(0, LottoBallBundle.bundleLength)
-            .map { LottoBall(it.toString()) }
+            .map { LottoBall(it) }
     }
 
     fun execute(): LottoTicket {
@@ -18,7 +18,7 @@ object LottoAutoTicketingMachine {
             LottoBonusBall(
                 LottoBall(
                     LottoConstant.LOTTO_NUM_RANGE.shuffled().first { it !in lottoBallBundle.getBallNums() }
-                        .toString()))
+                ))
 
         return LottoTicket(lottoBallBundle, bonusBall)
     }
