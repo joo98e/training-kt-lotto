@@ -6,7 +6,7 @@ import common.validation.Validation
 open class LottoBallBundle(private val lottoBalls: List<LottoBall>) {
 
     init {
-        if (lottoBalls.size != bundleLength) {
+        if (lottoBalls.size != LOTTO_LENGTH) {
             throw ExpectedException("로또 티켓의 번호는 총 6개의 숫자만을 가져야 합니다.")
         }
 
@@ -21,6 +21,6 @@ open class LottoBallBundle(private val lottoBalls: List<LottoBall>) {
     }
 
     companion object {
-        const val bundleLength = 6
+        const val LOTTO_LENGTH = 6
     }
 }

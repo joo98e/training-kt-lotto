@@ -16,7 +16,7 @@ object OutputView {
     }
 
     fun printLottoResult(lottoResult: LottoResult) {
-        val lottoWinners = lottoResult.getWonLotteries()
+        val lottoWinners = lottoResult.wonLotteries
 
         println("당첨 통계")
         println("--------------------------")

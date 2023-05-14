@@ -1,4 +1,4 @@
-package domain.lotto.machine
+package domain.lotto.machine.result
 
 import domain.lotto.enums.LottoWonLotteryEnum
 import domain.lotto.result.LottoResultBallBundle

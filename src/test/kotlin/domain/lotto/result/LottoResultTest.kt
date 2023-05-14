@@ -2,7 +2,8 @@ package domain.lotto.result
 
 import common.exception.ExpectedException
 import domain.lotto.ball.LottoBall
-import domain.lotto.machine.LottoAutoTicketingMachine
+import domain.lotto.ball.LottoBallBundle
+import domain.lotto.machine.auto.LottoAutoMachine
 import domain.lotto.ticket.LottoTicketBundle
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
@@ -15,25 +16,25 @@ class LottoResultTest {
 
     @BeforeEach
     fun setup() {
-        lottoTickets = LottoTicketBundle(List(10) { LottoAutoTicketingMachine.execute() })
+        lottoTickets = LottoTicketBundle(List(10) { LottoAutoMachine.execute() })
     }
 
     @Test
     fun `지난 주 당첨 번호와 보너스 번호를 받을 때 겹치는 번호가 있는지 확인한다`() {
-        val lottoBalls = listOf(
-            LottoBall("1"),
-            LottoBall("2"),
-            LottoBall("3"),
-            LottoBall("4"),
-            LottoBall("5"),
-            LottoBall("6"),
-        )
-
         val exception = shouldThrow<ExpectedException> {
             LottoResult(
                 lottoTickets, LottoResultBallBundle(
-                    lottoBalls
-                ), LottoResultBonusBall("6")
+                    LottoBallBundle(
+                        listOf(
+                            LottoBall(1),
+                            LottoBall(2),
+                            LottoBall(3),
+                            LottoBall(4),
+                            LottoBall(5),
+                            LottoBall(6),
+                        )
+                    )
+                ), LottoResultBonusBall(LottoBall(6))
             )
         }
 
@@ -45,14 +46,16 @@ class LottoResultTest {
         val exception = shouldThrow<ExpectedException> {
             LottoResult(
                 lottoTickets, LottoResultBallBundle(
-                    listOf(
-                        LottoBall("1"),
-                        LottoBall("2"),
-                        LottoBall("3"),
-                        LottoBall("4"),
-                        LottoBall("5"),
+                    LottoBallBundle(
+                        listOf(
+                            LottoBall(1),
+                            LottoBall(2),
+                            LottoBall(3),
+                            LottoBall(4),
+                            LottoBall(5),
+                        )
                     )
-                ), LottoResultBonusBall("6")
+                ), LottoResultBonusBall(LottoBall(6))
             )
         }
 
@@ -64,16 +67,18 @@ class LottoResultTest {
         val exception = shouldThrow<ExpectedException> {
             LottoResult(
                 lottoTickets, LottoResultBallBundle(
-                    listOf(
-                        LottoBall("1"),
-                        LottoBall("2"),
-                        LottoBall("3"),
-                        LottoBall("4"),
-                        LottoBall("5"),
-                        LottoBall("6"),
-                        LottoBall("7"),
+                    LottoBallBundle(
+                        listOf(
+                            LottoBall(1),
+                            LottoBall(2),
+                            LottoBall(3),
+                            LottoBall(4),
+                            LottoBall(5),
+                            LottoBall(6),
+                            LottoBall(7),
+                        )
                     )
-                ), LottoResultBonusBall("8")
+                ), LottoResultBonusBall(LottoBall(8))
             )
         }
 
@@ -85,15 +90,17 @@ class LottoResultTest {
         shouldNotThrow<ExpectedException> {
             LottoResult(
                 lottoTickets, LottoResultBallBundle(
-                    listOf(
-                        LottoBall("1"),
-                        LottoBall("2"),
-                        LottoBall("3"),
-                        LottoBall("4"),
-                        LottoBall("5"),
-                        LottoBall("6"),
+                    LottoBallBundle(
+                        listOf(
+                            LottoBall(1),
+                            LottoBall(2),
+                            LottoBall(3),
+                            LottoBall(4),
+                            LottoBall(5),
+                            LottoBall(6),
+                        )
                     )
-                ), LottoResultBonusBall("7")
+                ), LottoResultBonusBall(LottoBall(7))
             )
         }
     }

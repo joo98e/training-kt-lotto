@@ -3,14 +3,14 @@ package domain.lotto.result
 import common.exception.ExpectedException
 import domain.lotto.ticket.LottoTicketBundle
 import domain.lotto.enums.LottoWonLotteryEnum
-import domain.lotto.machine.LottoLotteryResultMachine
+import domain.lotto.machine.result.LottoLotteryResultMachine
 
 class LottoResult(
     private val lottoBundle: LottoTicketBundle,
     private val resultBallBundle: LottoResultBallBundle,
     private val resultBonusBall: LottoResultBonusBall
 ) {
-    private var wonLotteries: MutableList<LottoWonLotteryEnum> = mutableListOf()
+    val wonLotteries: MutableList<LottoWonLotteryEnum> = mutableListOf()
 
     init {
         if (resultBonusBall.lottoBall.num in resultBallBundle.lottoBallBundle.getBallNums()) {
@@ -31,10 +31,4 @@ class LottoResult(
             this.wonLotteries.add(lottoWinner)
         }
     }
-
-    fun getWonLotteries(): MutableList<LottoWonLotteryEnum> {
-        return this.wonLotteries
-    }
-
-
 }

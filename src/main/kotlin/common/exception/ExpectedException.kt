@@ -1,6 +1,6 @@
 package common.exception
 
-class ExpectedException : RuntimeException {
+open class ExpectedException : RuntimeException {
     constructor() : super() {}
     constructor(message: String?) : super("[ERROR]: $message") {}
 }

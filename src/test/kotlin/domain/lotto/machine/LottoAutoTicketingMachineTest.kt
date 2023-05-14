@@ -1,13 +1,14 @@
 package domain.lotto.machine
 
+import domain.lotto.machine.auto.LottoAutoMachine
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 class LottoAutoTicketingMachineTest {
     @Test
     fun `nums 변수와 bonus num 은 서로 겹치지 않아야 한다`() {
-        val lottoTicket = LottoAutoTicketingMachine.execute()
-        val isNotIncludedBonusNum: Boolean = lottoTicket.bonusBall.num !in lottoTicket.lottoBallBundle.getBallNums()
+        val lottoTicket = LottoAutoMachine.execute()
+        val isNotIncludedBonusNum: Boolean = lottoTicket.bonusBall.ball.num !in lottoTicket.lottoBallBundle.getBallNums()
         isNotIncludedBonusNum shouldBe true
     }
 }

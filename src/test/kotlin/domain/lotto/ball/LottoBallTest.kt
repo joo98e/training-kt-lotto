@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class LottoBallTest {
     @Test
     fun `로또 볼은 항상 숫자여야 한다`() {
-        val case1 = "3"
+        val case1 = 3
         val lottoBall = LottoBall(case1)
 
         lottoBall.num shouldBe 3
@@ -16,10 +16,10 @@ class LottoBallTest {
 
     @Test
     fun `로또 볼은 1 이상 45 이하의 숫자여야 한다`() {
-        val case1 = "1"
-        val case2 = "0"
-        val case3 = "45"
-        val case4 = "46"
+        val case1 = 1
+        val case2 = 0
+        val case3 = 45
+        val case4 = 46
 
         val lottoBall = LottoBall(case1)
         lottoBall.num shouldBe 1

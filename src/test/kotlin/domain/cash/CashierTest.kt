@@ -1,6 +1,6 @@
 package domain.cash
 
-import common.exception.ExpectedException
+import domain.cash.exception.CashierMoneyException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
@@ -20,7 +20,7 @@ class CashierTest {
     fun `Cashier 에게 1개도 구매하지 못하는 금액을 인자로 보내면 예외가 발생한다`() {
         val paidAmountCase1 = 900
 
-        val expectedException = shouldThrow<ExpectedException> {
+        val expectedException = shouldThrow<CashierMoneyException> {
             Cashier.purchaseLotto(Cash(paidAmountCase1))
         }
 
@@ -31,7 +31,7 @@ class CashierTest {
     fun `Cashier 에게 1000원 단위가 아닌 금액을 인자로 보내면 예외가 발생한다`() {
         val paidAmountCase1 = 9900
 
-        val expectedException = shouldThrow<ExpectedException> {
+        val expectedException = shouldThrow<CashierMoneyException> {
             Cashier.purchaseLotto(Cash(paidAmountCase1))
         }
 
