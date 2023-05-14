@@ -8,8 +8,8 @@ import domain.lotto.machine.enums.LottoTicketingMode
 import domain.lotto.ticket.LottoTicket
 
 object LottoManualMachine : LottoManualMachineInterface {
-    override fun execute(): LottoTicket {
-        val lottoBalls = List(listOf(1, 2, 3, 4, 5, 6).size) { LottoBall(it) }
+    override fun execute(ballNums: List<Int>): LottoTicket {
+        val lottoBalls = ballNums.map { LottoBall(it) }
 
         val lottoBallBundle = LottoBallBundle(lottoBalls)
         val bonusBall =
