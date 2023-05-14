@@ -21,7 +21,6 @@ object Cashier {
 
     private fun getLottoTicketBundle(cash: Cash): LottoTicketBundle {
 
-
         val ticketsCount = cash.amount / CashierPriceTag.LOTTO.price
 
         return LottoTicketBundle(List(ticketsCount) { LottoAutoMachine.execute() })
