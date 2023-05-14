@@ -1,11 +1,6 @@
-import common.util.StringUtil
 import domain.cash.Cash
 import domain.cash.Cashier
-import domain.lotto.ball.LottoBall
-import domain.lotto.ball.LottoBallBundle
 import domain.lotto.result.LottoResult
-import domain.lotto.result.LottoResultBallBundle
-import domain.lotto.result.LottoResultBonusBall
 import view.InputView
 import view.OutputView
 
@@ -17,13 +12,10 @@ fun main() {
 
     OutputView.printPurchaseHistory(gambler)
 
-    val ballNums = StringUtil.split(InputView.getResultLottoBallNums(), ",")
-    val resultLottoBalls = LottoResultBallBundle(
-        LottoBallBundle(ballNums.map { LottoBall(it.toInt()) })
-    )
-    val bonusWinningNumber = LottoResultBonusBall(LottoBall(InputView.getBonusNumber().toInt()))
+    val resultLottoBalls = InputView.getResultLottoBallNums()
+    val resultBonusBall = InputView.getResultBonusNumber()
 
-    val lottoResult = LottoResult(gambler.getTickets(), resultLottoBalls, bonusWinningNumber)
+    val lottoResult = LottoResult(gambler.getTickets(), resultLottoBalls, resultBonusBall)
 
     OutputView.printLottoResult(lottoResult)
     OutputView.printRevenueRate(gambler, lottoResult.wonLotteries)

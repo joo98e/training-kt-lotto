@@ -1,10 +1,12 @@
 package view
 
 import common.exception.ExpectedException
+import common.util.StringUtil
 import common.validation.Validation
 import domain.lotto.ball.LottoBall
 import domain.lotto.ball.LottoBallBundle
-import domain.lotto.validation.LottoValidation
+import domain.lotto.result.LottoResultBallBundle
+import domain.lotto.result.LottoResultBonusBall
 
 object InputView {
     fun getPurchaseLottoAmount(): Int {
@@ -15,30 +17,20 @@ object InputView {
         return amount.toInt()
     }
 
-    fun getLottoManualBalls(): LottoBallBundle {
-        val tempBallNums = mutableListOf<Int>()
-
-        while (tempBallNums.size < 6) {
-            print("번호를 입력하세요.")
-            val inputBallNum = readln().trim()
-
-            if (Validation.isNotNumeric(inputBallNum)) println("번호는 숫자 형식이어야 합니다. 다시 입력해 주세요.")
-            val lottoNums = inputBallNum.toInt()
-            if (LottoValidation.isNotRangeForWinningNum(lottoNums)) throw ExpectedException("로또 번호는 1 ~ 45 사이어야 합니다.")
-
-            tempBallNums.add(lottoNums)
-        }
-
-        return LottoBallBundle(List(tempBallNums.size) { LottoBall(it) })
-    }
-
-    fun getResultLottoBallNums(): String {
+    fun getResultLottoBallNums(): LottoResultBallBundle {
         println("지난 주 당첨 번호를 입력해 주세요.")
-        return readln()
+        val inputValue = readln()
+
+        val ballNums = StringUtil.split(inputValue, ",")
+        return LottoResultBallBundle(LottoBallBundle(ballNums.map { LottoBall(it.toInt()) }))
     }
 
-    fun getBonusNumber(): String {
+    fun getResultBonusNumber(): LottoResultBonusBall {
         println("지난 주 보너스 번호를 입력해 주세요.")
-        return readln()
+        val inputValue = readln()
+
+        if (Validation.isNotNumeric(inputValue)) println("번호는 숫자 형식이어야 합니다. 다시 입력해 주세요.")
+
+        return LottoResultBonusBall(LottoBall(inputValue.toInt()))
     }
 }

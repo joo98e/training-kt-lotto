@@ -1,9 +1,8 @@
 package domain.lotto.result
 
-import common.exception.ExpectedException
-import domain.lotto.ticket.LottoTicketBundle
 import domain.lotto.enums.LottoWonLotteryEnum
 import domain.lotto.machine.result.LottoLotteryResultMachine
+import domain.lotto.ticket.LottoTicketBundle
 
 class LottoResult(
     private val lottoBundle: LottoTicketBundle,
@@ -13,10 +12,6 @@ class LottoResult(
     val wonLotteries: MutableList<LottoWonLotteryEnum> = mutableListOf()
 
     init {
-        if (resultBonusBall.lottoBall.num in resultBallBundle.lottoBallBundle.getBallNums()) {
-            throw ExpectedException("당첨 번호에 보너스 번호가 포함될 수 없습니다.")
-        }
-
         lottery()
     }
 

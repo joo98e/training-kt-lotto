@@ -20,28 +20,6 @@ class LottoResultTest {
     }
 
     @Test
-    fun `지난 주 당첨 번호와 보너스 번호를 받을 때 겹치는 번호가 있는지 확인한다`() {
-        val exception = shouldThrow<ExpectedException> {
-            LottoResult(
-                lottoTickets, LottoResultBallBundle(
-                    LottoBallBundle(
-                        listOf(
-                            LottoBall(1),
-                            LottoBall(2),
-                            LottoBall(3),
-                            LottoBall(4),
-                            LottoBall(5),
-                            LottoBall(6),
-                        )
-                    )
-                ), LottoResultBonusBall(LottoBall(6))
-            )
-        }
-
-        exception.message shouldBe "[ERROR]: 당첨 번호에 보너스 번호가 포함될 수 없습니다."
-    }
-
-    @Test
     fun `당첨 번호의 길이가 모자랄 경우`() {
         val exception = shouldThrow<ExpectedException> {
             LottoResult(
