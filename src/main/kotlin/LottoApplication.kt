@@ -1,5 +1,5 @@
 import domain.cash.Cash
-import domain.cash.Cashier
+import domain.cashier.Cashier
 import domain.lotto.result.LottoResult
 import view.InputView
 import view.OutputView

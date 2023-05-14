@@ -1,4 +1,4 @@
-package domain.cash.exception
+package domain.cashier.exception
 
 import common.exception.ExpectedException
 

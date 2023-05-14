@@ -1,6 +1,7 @@
 package domain.cash
 
-import domain.cash.exception.CashierMoneyException
+import domain.cashier.exception.CashierMoneyException
+import domain.cashier.Cashier
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
