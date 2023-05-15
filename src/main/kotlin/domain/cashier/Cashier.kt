@@ -8,22 +8,25 @@ import domain.lotto.machine.auto.LottoAutoMachine
 import domain.lotto.machine.manual.LottoManualMachine
 import domain.lotto.ticket.LottoTicket
 import domain.lotto.ticket.LottoTicketBundle
+import view.collector.ReadlineCollector
 
 object Cashier {
-    fun purchaseLotto(cash: Cash): Gambler {
+    fun purchaseLotto(cash: Cash, manualTicketCount: Int = 0): Gambler {
         if (cash.amount % CashierPriceTag.LOTTO.price > 0) throw CashierMoneyException("금액은 천원 단위로 사용 가능합니다.")
 
-        val result = mutableListOf<LottoTicket>()
+        val totalCount = cash.amount / CashierPriceTag.LOTTO.price
+        val tickets = mutableListOf<LottoTicket>()
 
-        val tickets = getLottoTicketBundle(cash)
-        return Gambler(cash, tickets)
-    }
+        val autoTicketCount = totalCount - manualTicketCount
+        repeat(autoTicketCount) { tickets.add(executeAutoMachine()) }
 
-    private fun getLottoTicketBundle(cash: Cash): LottoTicketBundle {
+        repeat(manualTicketCount) {
+            println("로또 번호를 입력해 주세요.")
+            val ballNums = ReadlineCollector.getListInt()
+            tickets.add(executeManualMachine(ballNums))
+        }
 
-        val ticketsCount = cash.amount / CashierPriceTag.LOTTO.price
-
-        return LottoTicketBundle(List(ticketsCount) { LottoAutoMachine.execute() })
+        return Gambler(cash, LottoTicketBundle(tickets))
     }
 
     private fun executeAutoMachine(): LottoTicket {

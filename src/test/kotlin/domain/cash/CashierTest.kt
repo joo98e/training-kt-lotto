@@ -2,6 +2,7 @@ package domain.cash
 
 import domain.cashier.exception.CashierMoneyException
 import domain.cashier.Cashier
+import domain.cashier.enums.CashierPriceTag
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
@@ -14,7 +15,7 @@ class CashierTest {
         val cash = Cash(paidAmountCase1)
         val gambler = Cashier.purchaseLotto(cash)
         gambler.cash.amount shouldBe paidAmountCase1
-        gambler.getTickets().tickets.size shouldBe cash.amount / Cashier.PRICE_LOTTO
+        gambler.getTickets().tickets.size shouldBe cash.amount / CashierPriceTag.LOTTO.price
     }
 
     @Test
