@@ -3,6 +3,7 @@ package domain.lotto.result
 import domain.lotto.enums.LottoWonLotteryEnum
 import domain.lotto.machine.result.LottoLotteryResultMachine
 import domain.lotto.ticket.LottoTicketBundle
+import java.text.DecimalFormat
 
 class LottoResult(
     private val lottoBundle: LottoTicketBundle,
@@ -13,6 +14,14 @@ class LottoResult(
 
     init {
         lottery()
+    }
+
+    fun getRevenueRate(usedAmount: Int): String {
+        var result = 0
+        wonLotteries.forEach { result += it.prizeMoney }
+        val earningRate = result / usedAmount
+        val decimalFormat = DecimalFormat("#.##")
+        return decimalFormat.format(earningRate)
     }
 
     private fun lottery() {

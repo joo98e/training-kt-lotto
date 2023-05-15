@@ -7,7 +7,7 @@ import java.text.DecimalFormat
 
 object OutputView {
     fun printPurchaseHistory(gambler: Gambler) {
-        val lottoBundle = gambler.getTickets()
+        val lottoBundle = gambler.ticketBundle
         println("${lottoBundle.tickets.size}개를 구매했습니다.")
         lottoBundle.tickets.forEach { ticket ->
             println("${ticket.lottoBallBundle.getBallNums()}")
@@ -27,11 +27,7 @@ object OutputView {
         }
     }
 
-    fun printRevenueRate(gambler: Gambler, winners: List<LottoWonLotteryEnum>) {
-        var result = 0.0
-        winners.forEach { result += it.prizeMoney }
-        val earningRate = result / gambler.cash.amount
-        val decimalFormat = DecimalFormat("#.##")
-        return println("총 수익률은 ${decimalFormat.format(earningRate)} 입니다.")
+    fun printRevenueRate(revenueRate: String) {
+        println("총 수익률은 $revenueRate 입니다.")
     }
 }

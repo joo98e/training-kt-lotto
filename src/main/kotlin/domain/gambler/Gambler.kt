@@ -5,11 +5,6 @@ import domain.lotto.ticket.LottoTicketBundle
 
 class Gambler(
     val cash: Cash,
-    private val tickets: LottoTicketBundle
+    val ticketBundle: LottoTicketBundle = LottoTicketBundle(mutableListOf())
 ) {
-
-    fun getTickets(): LottoTicketBundle {
-        return this.tickets
-    }
-
 }

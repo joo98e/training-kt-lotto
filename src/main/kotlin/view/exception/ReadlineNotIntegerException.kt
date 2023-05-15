@@ -1,6 +1,6 @@
 package view.exception
 
-class ReadlineFormatException : NumberFormatException {
+class ReadlineNotIntegerException : NumberFormatException {
     constructor() : super() {}
     constructor(message: String?) : super("[ERROR]: $message") {}
 }

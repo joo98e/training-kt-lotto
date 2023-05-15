@@ -16,7 +16,7 @@ class LottoResultTest {
 
     @BeforeEach
     fun setup() {
-        lottoTickets = LottoTicketBundle(List(10) { LottoAutoMachine.execute() })
+        lottoTickets = LottoTicketBundle(MutableList(10) { LottoAutoMachine.execute() })
     }
 
     @Test
@@ -37,7 +37,7 @@ class LottoResultTest {
             )
         }
 
-        exception.message shouldBe "[ERROR]: 로또 티켓의 번호는 총 6개의 숫자만을 가져야 합니다."
+        exception.message shouldBe "[ERROR]: 로또 번호는 총 6개의 숫자만을 가져야 합니다."
     }
 
     @Test
@@ -60,7 +60,7 @@ class LottoResultTest {
             )
         }
 
-        exception.message shouldBe "[ERROR]: 로또 티켓의 번호는 총 6개의 숫자만을 가져야 합니다."
+        exception.message shouldBe "[ERROR]: 로또 번호는 총 6개의 숫자만을 가져야 합니다."
     }
 
     @Test

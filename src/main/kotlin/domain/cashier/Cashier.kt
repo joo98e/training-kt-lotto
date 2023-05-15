@@ -1,40 +1,41 @@
 package domain.cashier
 
-import domain.cash.Cash
 import domain.cashier.enums.CashierPriceTag
-import domain.cashier.exception.CashierMoneyException
 import domain.gambler.Gambler
+import domain.lotto.ball.LottoBallBundle
 import domain.lotto.machine.auto.LottoAutoMachine
 import domain.lotto.machine.manual.LottoManualMachine
 import domain.lotto.ticket.LottoTicket
-import domain.lotto.ticket.LottoTicketBundle
-import view.collector.ReadlineCollector
 
 object Cashier {
-    fun purchaseLotto(cash: Cash, manualTicketCount: Int = 0): Gambler {
-        if (cash.amount % CashierPriceTag.LOTTO.price > 0) throw CashierMoneyException("금액은 천원 단위로 사용 가능합니다.")
+    fun purchaseAutoLottoTicket(gambler: Gambler, autoLottoTicketCount: Int) {
+        val price = getLottoPurchasePrice(autoLottoTicketCount)
+        val ticketSize = price / CashierPriceTag.LOTTO.price
 
-        val totalCount = cash.amount / CashierPriceTag.LOTTO.price
-        val tickets = mutableListOf<LottoTicket>()
+        val autoTickets = mutableListOf<LottoTicket>()
+        repeat(ticketSize) { autoTickets.add(LottoAutoMachine.execute()) }
 
-        val autoTicketCount = totalCount - manualTicketCount
-        repeat(autoTicketCount) { tickets.add(executeAutoMachine()) }
+        adjustmentToLottoGambler(gambler, price, autoTickets)
+    }
 
-        repeat(manualTicketCount) {
-            println("로또 번호를 입력해 주세요.")
-            val ballNums = ReadlineCollector.getListInt()
-            tickets.add(executeManualMachine(ballNums))
+    fun purchaseManualLottoTicket(gambler: Gambler, manualLottoBallBundles: List<LottoBallBundle>) {
+        val price = getLottoPurchasePrice(manualLottoBallBundles.size)
+
+        val manualTickets = mutableListOf<LottoTicket>()
+        manualLottoBallBundles.forEach { bundle ->
+            manualTickets.add(LottoManualMachine.execute(bundle))
         }
 
-        return Gambler(cash, LottoTicketBundle(tickets))
+        adjustmentToLottoGambler(gambler, price, manualTickets)
     }
 
-    private fun executeAutoMachine(): LottoTicket {
-        return LottoAutoMachine.execute()
+    private fun getLottoPurchasePrice(count: Int): Int {
+        return CashierPriceTag.LOTTO.price * count
     }
 
-    private fun executeManualMachine(ballNums: List<Int>): LottoTicket {
-        return LottoManualMachine.execute(ballNums)
+    private fun adjustmentToLottoGambler(gambler: Gambler, price: Int, tickets: List<LottoTicket>) {
+        gambler.cash.use(price)
+        gambler.ticketBundle.tickets.addAll(tickets)
     }
 }
 

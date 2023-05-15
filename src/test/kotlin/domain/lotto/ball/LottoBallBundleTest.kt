@@ -38,6 +38,6 @@ class LottoBallBundleTest {
                     LottoBall(7),
                 )
             )
-        }.message shouldBe "[ERROR]: 로또 티켓의 번호는 총 6개의 숫자만을 가져야 합니다."
+        }.message shouldBe "[ERROR]: 로또 번호는 총 6개의 숫자만을 가져야 합니다."
     }
 }
