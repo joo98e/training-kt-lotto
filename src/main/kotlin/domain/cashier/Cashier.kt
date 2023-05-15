@@ -29,11 +29,11 @@ object Cashier {
         adjustmentToLottoGambler(gambler, price, manualTickets)
     }
 
-    private fun getLottoPurchasePrice(count: Int): Int {
+    fun getLottoPurchasePrice(count: Int): Int {
         return CashierPriceTag.LOTTO.price * count
     }
 
-    private fun adjustmentToLottoGambler(gambler: Gambler, price: Int, tickets: List<LottoTicket>) {
+    fun adjustmentToLottoGambler(gambler: Gambler, price: Int, tickets: List<LottoTicket>) {
         gambler.cash.use(price)
         gambler.ticketBundle.tickets.addAll(tickets)
     }

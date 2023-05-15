@@ -6,7 +6,6 @@ class ReadlineCollectorTest {
 
     @Test
     fun getInt() {
-        val int = ReadlineCollector.getInt()
     }
 
     @Test

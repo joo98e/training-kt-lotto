@@ -3,7 +3,9 @@ package domain.cash
 import domain.cash.exception.CashNotPositiveIntegerException
 import domain.cash.exception.CashOverConsumptionException
 
-class Cash(var amount: Int, usedAmount: Int = 0) {
+class Cash(amount: Int, usedAmount: Int = 0) {
+    var amount: Int
+        private set
     var usedAmount: Int
         private set
 
@@ -12,6 +14,7 @@ class Cash(var amount: Int, usedAmount: Int = 0) {
             throw CashNotPositiveIntegerException("금액은 양의 정수여야 합니다.")
         }
 
+        this.amount = amount
         this.usedAmount = usedAmount
     }
 
