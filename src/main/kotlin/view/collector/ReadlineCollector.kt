@@ -35,7 +35,6 @@ object ReadlineCollector {
     }
 
     fun getManualLottoBallBundleList(count: Int): List<LottoBallBundle> {
-
         val result = mutableListOf<LottoBallBundle>()
 
         while (result.size < count) {

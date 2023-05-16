@@ -17,7 +17,6 @@ fun main() {
     val manualLottoBallBundleList = ReadlineCollector.getManualLottoBallBundleList(manualTicketCount)
     Cashier.purchaseManualLottoTicket(gambler, manualLottoBallBundleList)
 
-
     OutputView.printPurchaseHistory(gambler)
 
     val resultLottoBalls = ReadlineCollector.getResultLottoBallNums()
