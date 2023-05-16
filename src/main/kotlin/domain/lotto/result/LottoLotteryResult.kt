@@ -1,11 +1,9 @@
-package domain.lotto.machine.result
+package domain.lotto.result
 
 import domain.lotto.enums.LottoWonLotteryEnum
-import domain.lotto.result.LottoResultBallBundle
-import domain.lotto.result.LottoResultBonusBall
 import domain.lotto.ticket.LottoTicket
 
-object LottoLotteryResultMachine {
+object LottoLotteryResult {
     fun lottery(
         lottoResultBallBundle: LottoResultBallBundle,
         lottoResultBonusBall: LottoResultBonusBall,

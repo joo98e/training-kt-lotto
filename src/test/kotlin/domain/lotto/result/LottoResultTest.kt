@@ -3,7 +3,7 @@ package domain.lotto.result
 import common.exception.ExpectedException
 import domain.lotto.ball.LottoBall
 import domain.lotto.ball.LottoBallBundle
-import domain.lotto.machine.auto.LottoAutoMachine
+import domain.lotto.machine.LottoAutoMachine
 import domain.lotto.ticket.LottoTicketBundle
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow

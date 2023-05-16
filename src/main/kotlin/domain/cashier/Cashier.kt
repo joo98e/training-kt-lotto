@@ -2,31 +2,24 @@ package domain.cashier
 
 import domain.cashier.enums.CashierPriceTag
 import domain.gambler.Gambler
-import domain.lotto.ball.LottoBallBundle
-import domain.lotto.machine.auto.LottoAutoMachine
-import domain.lotto.machine.manual.LottoManualMachine
+import domain.lotto.machine.LottoAutoMachine
+import domain.lotto.machine.LottoManualMachine
+import domain.lotto.machine.enums.LottoTicketingMode
 import domain.lotto.ticket.LottoTicket
 
 object Cashier {
-    fun purchaseAutoLottoTicket(gambler: Gambler, autoLottoTicketCount: Int) {
-        val price = getLottoPurchasePrice(autoLottoTicketCount)
-        val ticketSize = price / CashierPriceTag.LOTTO.price
+    fun purchaseLottoTickets(mode: LottoTicketingMode, gambler: Gambler, count: Int) {
+        val tickets = mutableListOf<LottoTicket>()
 
-        val autoTickets = mutableListOf<LottoTicket>()
-        repeat(ticketSize) { autoTickets.add(LottoAutoMachine.execute()) }
-
-        adjustmentToLottoGambler(gambler, price, autoTickets)
-    }
-
-    fun purchaseManualLottoTicket(gambler: Gambler, manualLottoBallBundles: List<LottoBallBundle>) {
-        val price = getLottoPurchasePrice(manualLottoBallBundles.size)
-
-        val manualTickets = mutableListOf<LottoTicket>()
-        manualLottoBallBundles.forEach { bundle ->
-            manualTickets.add(LottoManualMachine.execute(bundle))
+        repeat(count) {
+            when {
+                mode === LottoTicketingMode.AUTO -> tickets.add(LottoAutoMachine.execute())
+                mode === LottoTicketingMode.MANUAL -> tickets.add(LottoManualMachine.execute())
+            }
         }
 
-        adjustmentToLottoGambler(gambler, price, manualTickets)
+        gambler.ticketBundle.tickets.addAll(tickets)
+        gambler.cash.use(CashierPriceTag.LOTTO.price * count)
     }
 
     fun getLottoPurchasePrice(count: Int): Int {

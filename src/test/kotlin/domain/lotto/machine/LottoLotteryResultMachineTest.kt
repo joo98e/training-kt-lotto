@@ -5,7 +5,7 @@ import domain.lotto.ball.LottoBallBundle
 import domain.lotto.ball.LottoBonusBall
 import domain.lotto.enums.LottoWonLotteryEnum
 import domain.lotto.machine.enums.LottoTicketingMode
-import domain.lotto.machine.result.LottoLotteryResultMachine
+import domain.lotto.result.LottoLotteryResult
 import domain.lotto.result.LottoResultBallBundle
 import domain.lotto.result.LottoResultBonusBall
 import domain.lotto.ticket.LottoTicket
@@ -16,7 +16,7 @@ class LottoLotteryResultMachineTest {
     @Test
     fun `당첨 테스트 - 1등(6개 모두 일치)`() {
 
-        val lottoWonLotteryEnum = LottoLotteryResultMachine.lottery(
+        val lottoWonLotteryEnum = LottoLotteryResult.lottery(
             LottoResultBallBundle(
                 LottoBallBundle(
                     listOf(
@@ -47,7 +47,7 @@ class LottoLotteryResultMachineTest {
 
     @Test
     fun `당첨 테스트 - 2등(1개 빼고 일치 + 보너스 번호 일치)`() {
-        val lottoWonLotteryEnum = LottoLotteryResultMachine.lottery(
+        val lottoWonLotteryEnum = LottoLotteryResult.lottery(
             LottoResultBallBundle(
                 LottoBallBundle(
                     listOf(
@@ -79,7 +79,7 @@ class LottoLotteryResultMachineTest {
 
     @Test
     fun `당첨 테스트 - 3등(5개 일치)`() {
-        val lottoWonLotteryEnum = LottoLotteryResultMachine.lottery(
+        val lottoWonLotteryEnum = LottoLotteryResult.lottery(
             LottoResultBallBundle(
                 LottoBallBundle(
                     listOf(
@@ -111,7 +111,7 @@ class LottoLotteryResultMachineTest {
 
     @Test
     fun `당첨 테스트 - 4등(4개 일치)`() {
-        val lottoWonLotteryEnum = LottoLotteryResultMachine.lottery(
+        val lottoWonLotteryEnum = LottoLotteryResult.lottery(
             LottoResultBallBundle(
                 LottoBallBundle(
                     listOf(
@@ -142,7 +142,7 @@ class LottoLotteryResultMachineTest {
 
     @Test
     fun `당첨 테스트 - 5등(3개 일치)`() {
-        val lottoWonLotteryEnum = LottoLotteryResultMachine.lottery(
+        val lottoWonLotteryEnum = LottoLotteryResult.lottery(
             LottoResultBallBundle(
                 LottoBallBundle(
                     listOf(

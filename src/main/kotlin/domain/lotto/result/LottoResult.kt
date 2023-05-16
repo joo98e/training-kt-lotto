@@ -1,7 +1,6 @@
 package domain.lotto.result
 
 import domain.lotto.enums.LottoWonLotteryEnum
-import domain.lotto.machine.result.LottoLotteryResultMachine
 import domain.lotto.ticket.LottoTicketBundle
 import java.text.DecimalFormat
 
@@ -26,7 +25,7 @@ class LottoResult(
 
     private fun lottery() {
         lottoBundle.tickets.forEach { ticket ->
-            val lottoWinner = LottoLotteryResultMachine.lottery(
+            val lottoWinner = LottoLotteryResult.lottery(
                 this.resultBallBundle,
                 this.resultBonusBall,
                 ticket

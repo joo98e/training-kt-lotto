@@ -1,25 +1,27 @@
-package domain.lotto.machine.manual
+package domain.lotto.machine
 
 import domain.lotto.ball.LottoBall
 import domain.lotto.ball.LottoBallBundle
 import domain.lotto.ball.LottoBonusBall
-import domain.lotto.constants.LottoConstant
 import domain.lotto.machine.enums.LottoTicketingMode
 import domain.lotto.ticket.LottoTicket
 import view.collector.ReadlineCollector
 
-object LottoManualMachine : LottoManualMachineInterface {
-    override fun execute(lottoBallBundle: LottoBallBundle): LottoTicket {
-        val bonusBall = LottoBonusBall(
-            LottoBall(LottoConstant.LOTTO_NUM_RANGE.shuffled()
-                .first { it !in lottoBallBundle.getBallNums() })
-        )
+object LottoManualMachine : LottoMachine {
+    override fun execute(): LottoTicket {
+        val lottoBallBundle = LottoBallBundle(getLottoBalls())
+
+        val bonusBall = LottoBonusBall(getLottoBonusBall())
 
         return LottoTicket(LottoTicketingMode.MANUAL, lottoBallBundle, bonusBall)
     }
 
-    override fun getLottoBalls(): List<LottoBall> {
+    private fun getLottoBalls(): List<LottoBall> {
         println("로또 번호를 입력해 주세요.")
         return ReadlineCollector.getListInt().map { LottoBall(it) }
+    }
+
+    private fun getLottoBonusBall(): LottoBall {
+        return LottoBall(ReadlineCollector.getInt("로또 보너스 번호를 입력해 주세요."))
     }
 }

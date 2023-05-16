@@ -1,4 +1,4 @@
-package domain.lotto.machine.auto
+package domain.lotto.machine
 
 import domain.lotto.ball.LottoBall
 import domain.lotto.ball.LottoBallBundle
@@ -7,12 +7,7 @@ import domain.lotto.constants.LottoConstant
 import domain.lotto.machine.enums.LottoTicketingMode
 import domain.lotto.ticket.LottoTicket
 
-object LottoAutoMachine : LottoAutoMachineInterface {
-    override fun generateLottoBalls(): List<LottoBall> {
-        return LottoConstant.LOTTO_NUM_RANGE.shuffled().subList(0, LottoBallBundle.LOTTO_LENGTH)
-            .map { LottoBall(it) }
-    }
-
+object LottoAutoMachine : LottoMachine {
     override fun execute(): LottoTicket {
         val lottoBallBundle = LottoBallBundle(generateLottoBalls())
         val bonusBall =
@@ -22,5 +17,10 @@ object LottoAutoMachine : LottoAutoMachineInterface {
                 ))
 
         return LottoTicket(LottoTicketingMode.AUTO, lottoBallBundle, bonusBall)
+    }
+
+    private fun generateLottoBalls(): List<LottoBall> {
+        return LottoConstant.LOTTO_NUM_RANGE.shuffled().subList(0, LottoBallBundle.LOTTO_LENGTH)
+            .map { LottoBall(it) }
     }
 }

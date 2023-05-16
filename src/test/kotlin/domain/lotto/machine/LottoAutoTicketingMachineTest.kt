@@ -1,6 +1,5 @@
 package domain.lotto.machine
 
-import domain.lotto.machine.auto.LottoAutoMachine
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 

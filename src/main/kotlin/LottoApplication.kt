@@ -1,6 +1,7 @@
 import domain.cash.Cash
 import domain.cashier.Cashier
 import domain.gambler.Gambler
+import domain.lotto.machine.enums.LottoTicketingMode
 import domain.lotto.result.LottoResult
 import view.OutputView
 import view.collector.ReadlineCollector
@@ -11,13 +12,12 @@ fun main() {
     val gambler = Gambler(cash)
 
     val autoTicketCount = ReadlineCollector.getInt("자동으로 구매할 로또 티켓의 개수를 입력하세요")
-    Cashier.purchaseAutoLottoTicket(gambler, autoTicketCount)
+    Cashier.purchaseLottoTickets(LottoTicketingMode.AUTO, gambler, autoTicketCount)
 
     val manualTicketCount = ReadlineCollector.getInt("수동으로 구매할 로또 티켓의 개수를 입력하세요")
-    val manualLottoBallBundleList = ReadlineCollector.getManualLottoBallBundleList(manualTicketCount)
-    Cashier.purchaseManualLottoTicket(gambler, manualLottoBallBundleList)
+    Cashier.purchaseLottoTickets(LottoTicketingMode.MANUAL, gambler, manualTicketCount)
 
-    OutputView.printPurchaseHistory(gambler)
+    OutputView.printPurchaseLottoHistory(gambler)
 
     val resultLottoBalls = ReadlineCollector.getResultLottoBallNums()
     val resultBonusBall = ReadlineCollector.getResultBonusNumber()

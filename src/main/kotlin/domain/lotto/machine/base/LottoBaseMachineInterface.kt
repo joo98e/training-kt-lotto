@@ -1,3 +1,0 @@
-package domain.lotto.machine.base
-
-interface LottoBaseMachineInterface

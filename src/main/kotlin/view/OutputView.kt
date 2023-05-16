@@ -3,10 +3,9 @@ package view
 import domain.gambler.Gambler
 import domain.lotto.result.LottoResult
 import domain.lotto.enums.LottoWonLotteryEnum
-import java.text.DecimalFormat
 
 object OutputView {
-    fun printPurchaseHistory(gambler: Gambler) {
+    fun printPurchaseLottoHistory(gambler: Gambler) {
         val lottoBundle = gambler.ticketBundle
         println("${lottoBundle.tickets.size}개를 구매했습니다.")
         lottoBundle.tickets.forEach { ticket ->

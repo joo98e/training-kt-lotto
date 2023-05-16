@@ -37,7 +37,7 @@ object ReadlineCollector {
     fun getManualLottoBallBundleList(count: Int): List<LottoBallBundle> {
         val result = mutableListOf<LottoBallBundle>()
 
-        while (result.size < count) {
+        while (result.size <= count) {
             println("수동 로또 번호를 입력하세요")
             val inputValue = readln()
             val stringList = StringUtil.split(inputValue)
